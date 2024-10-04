@@ -117,7 +117,7 @@ jobs:
         - name: Set Context
           uses: azure/k8s-set-context@v4
           with:
-              method: kubeconfig
+              method: KUBECONFIG
               k8s-secret: ${{ secrets.KUBECONFIG }}
 
         - name: Check Kubectl Version
