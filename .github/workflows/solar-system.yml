@@ -110,18 +110,12 @@ jobs:
         - uses: azure/setup-kubectl@v3
           with:
             version: v1.26.0
+      
         - uses: azure/k8s-set-context@v3
           with:
             method: kubeconfig
             kubeconfig: '${{ secrets.KUBECONFIG }}'
-
-        - name: Check kubectl context
-          run: |
-           kubectl config view
-           kubectl config get-contexts
-           kubectl config use-context default
-           kubectl config current-context
-
+            context: default # current-context from kubeconfig is used as default
 
         - name: Get cluster info
           run: kubectl cluster-info
