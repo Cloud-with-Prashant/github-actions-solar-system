@@ -114,7 +114,15 @@ jobs:
           with:
             method: kubeconfig
             kubeconfig: '${{ secrets.KUBECONFIG }}'
-        - run: kubectl version --short -o yaml
+
+        - name: Check kubectl context
+          run: kubectl config view
+          
+        - name: Get cluster info
+          run: kubectl cluster-info
+          
+        - name: check k8s version 
+          run: kubectl version --short -o yaml
         
         - name: GET  NGINX INGRESS CONTROLLER IP Address
           run: echo "kubectl -n ingress-nginx get services ingress-nginx-controller -o jsonpath="{.status.loadBalancer.ingress[0].ip}"" >> $GITHUB_ENV
