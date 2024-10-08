@@ -119,9 +119,10 @@ jobs:
           run: |
            kubectl config view
            kubectl config get-contexts
-           
+           kubectl config use-context default
+           kubectl config current-context
 
-          
+
         - name: Get cluster info
           run: kubectl cluster-info
           
