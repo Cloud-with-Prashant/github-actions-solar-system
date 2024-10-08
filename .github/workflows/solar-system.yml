@@ -116,7 +116,11 @@ jobs:
             kubeconfig: '${{ secrets.KUBECONFIG }}'
 
         - name: Check kubectl context
-          run: kubectl config view
+          run: |
+           kubectl config view
+           kubectl config get-contexts
+           
+
           
         - name: Get cluster info
           run: kubectl cluster-info
